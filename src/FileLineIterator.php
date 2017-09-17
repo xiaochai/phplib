@@ -4,39 +4,32 @@ class FileLineIterator implements  \Iterator{
     private $fh;
     private $currLineNum = 0;
     private $currLine = false;
+    private $counter = 0;
     public function __construct($filename){
-        var_dump(__METHOD__);
         $this->fh = fopen($filename, "r");
+        $this->currLineNum = 0;
+        $this->currLine = fgets($this->fh);
     }
 
     public function key(){
-        var_dump(__METHOD__);
         return $this->currLineNum;
     }
 
     public function next(){
-        var_dump(__METHOD__);
         $this->currLine = fgets($this->fh);
-        var_dump($this->currLine);die;
-        $this->currLine++;
-        
+        $this->currLineNum++;
     }
 
     public function current(){
-        var_dump(__METHOD__);
-        return $this->currLine;
+        return trim($this->currLine, "\r\n");
     }
     public function valid(){
-        var_dump(__METHOD__);
-        if($fh === false || ($this->currLine !=0 && $this->currLine === false)){
-            return false;
-        }
-        return true;
+        return (bool)$this->currLine;
     }
     public function rewind(){
-        var_dump(__METHOD__);
+        rewind($this->fh);
         $this->currLineNum = 0;
-        $this->currLine = false;
+        $this->currLine = fgets($this->fh);
     }
 }
 
