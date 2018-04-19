@@ -1,4 +1,4 @@
-# [Translate - A easy way to support multi-language](doc/translate.md)
+# Translate - A easy way to support multi-language
 
 Translate以与Laravel相似的方式，支持PHP网站的国际化。
 
@@ -89,7 +89,6 @@ Translate::getInstance("/xxx/lang", "zh_cn", "en")->setThrowException(false);
 有三种方法可调用翻译文本
 
 ```php
-<?php
 echo __("live/link.guest.ready");
 echo trans("live/link.guest.ready");
 echo \Phplib\Translate::getInstance()->get("live/link.guest.ready");
